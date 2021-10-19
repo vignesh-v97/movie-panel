@@ -5,16 +5,19 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MovieListComponent } from './features/movie-list/movie-list.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { NavbarModule } from './shared/components/navbar/navbar.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MovieListComponent
+    MovieListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NavbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
