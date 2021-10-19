@@ -9,13 +9,15 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./people.component.scss']
 })
 export class PeopleComponent implements OnInit {
-   trendingPeopls:TrendingPeopleItem[] | null = null;
-   tmdbPosterBaseUrl:string = environment.tmdbPosterBaseUrl
+  dayOrWeek:string = 'week'
+
+  trendingPeopls:TrendingPeopleItem[] | null = null;
+  tmdbPosterBaseUrl:string = environment.tmdbPosterBaseUrl
 
   constructor(public trendingService:TrendingService) { }
 
   ngOnInit(): void {
-    this.trendingService.getTrending<TrendingPeopleItem[]>('person').subscribe(trendingResp=>this.trendingPeopls=trendingResp.results);
+    this.trendingService.getTrending<TrendingPeopleItem[]>('person', this.dayOrWeek).subscribe(trendingResp=>this.trendingPeopls=trendingResp.results);
   }
 
 }
