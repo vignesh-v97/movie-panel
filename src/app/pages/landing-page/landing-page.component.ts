@@ -26,14 +26,20 @@ export class LandingPageComponent implements OnInit {
   ngOnInit(): void {
     // Movies
     this.trendingService.getTrending<TrendingMovieItem[]>('movie', this.dayOrWeek).subscribe(trendingResp=> {
-      this.trendingMovies = trendingResp.results;
+      this.trendingMovies = trendingResp.results.slice(0, 5);
     });
 
     // Series
-    this.trendingService.getTrending<TrendingSeriesItem[]>('tv', this.dayOrWeek).subscribe(trendingResp=>this.trendingSeries=trendingResp.results);
+    this.trendingService.getTrending<TrendingSeriesItem[]>('tv', this.dayOrWeek).subscribe(trendingResp=>
+      {
+        this.trendingSeries=trendingResp.results.slice(0, 5)
+      });
 
     // People
-    this.trendingService.getTrending<TrendingPeopleItem[]>('person', this.dayOrWeek).subscribe(trendingResp=>this.trendingPeopls=trendingResp.results);
+    this.trendingService.getTrending<TrendingPeopleItem[]>('person', this.dayOrWeek).subscribe(trendingResp=>
+      {
+        this.trendingPeopls=trendingResp.results.slice(0, 5)
+      });
   }
 
   movieDetail(movieData:any) {

@@ -10,6 +10,7 @@
     type="radio"
     name="type"
     value="week"
+    checked
     (click)="chooseDayorWeek($event)"
     id=""
   />
@@ -28,10 +29,10 @@
   <!-- We've used 3xl here, but feel free to try other max-widths based on your needs -->
   <div class="mx-auto max-w-9xl">
     <div class="bg-white">
-      <div
-        class="max-w-2xl px-4 py-16 mx-auto  sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8"
-      >
-        <h2 class="mb-12 text-4xl text-black">Movies</h2>
+      <div class="max-w-2xl px-4 py-16 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
+        <h2 class="mb-12 text-4xl text-black">
+          <a routerLink="/movie">Movies</a>
+        </h2>
 
         <div
           class="grid grid-cols-1  gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-5 lg:gap-x-8"
@@ -70,13 +71,17 @@
             </div>
           </div>
         </div>
+
+        <div class="flex justify-end mt-2 text-blue-500">
+          <a routerLink="/movie">More items..</a>
+        </div>
       </div>
 
       <!-- =========================================== -->
-      <div
-        class="max-w-2xl px-4 py-16 mx-auto  sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8"
-      >
-        <h2 class="mb-12 text-4xl text-black">Series</h2>
+      <div class="max-w-2xl px-4 py-16 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
+        <h2 class="mt-4 mb-12 text-4xl text-black">
+          <a routerLink="/series">Series</a>
+        </h2>
 
         <div
           class="grid grid-cols-1  gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-5 lg:gap-x-8"
@@ -115,12 +120,16 @@
             </div>
           </div>
         </div>
+
+        <div class="flex justify-end mt-2 text-blue-500">
+          <a routerLink="/series">More items..</a>
+        </div>
       </div>
       <!-- =========================================== -->
-      <div
-        class="max-w-2xl px-4 py-16 mx-auto  sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8"
-      >
-        <h2 class="mb-12 text-4xl text-black">People</h2>
+      <div class="max-w-2xl px-4 py-16 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
+        <h2 class="mt-4 mb-12 text-4xl text-black">
+          <a routerLink="/people">Peoples</a>
+        </h2>
 
         <div
           class="grid grid-cols-1  gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-5 lg:gap-x-8"
@@ -158,6 +167,10 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="flex justify-end mt-2 text-blue-500">
+          <a routerLink="/people">More items..</a>
         </div>
       </div>
     </div>
