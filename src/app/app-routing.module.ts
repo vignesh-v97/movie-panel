@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { LandingPageModule } from './pages/landing-page/landing-page.module';
 
 const routes: Routes = [
   { path: "", loadChildren: ()=>import('./pages/landing-page/landing-page.module').then((m)=>m.LandingPageModule) },

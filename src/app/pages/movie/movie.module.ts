@@ -5,15 +5,14 @@ import { MovieRoutingModule } from './movie-routing.module';
 import { MovieComponent } from './movie.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
-
 @NgModule({
   declarations: [
     MovieComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
   ],
   imports: [
     CommonModule,
-    MovieRoutingModule
+    MovieRoutingModule,
   ]
 })
 export class MovieModule { }
