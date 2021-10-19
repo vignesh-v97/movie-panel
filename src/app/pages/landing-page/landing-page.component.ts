@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TrendingMovieItem,TrendingSeriesItem,TrendingPeopleItem } from 'src/app/shared/interfaces/Trending';
 import { TrendingService } from 'src/app/shared/services/trending/trending.service';
 import { environment } from 'src/environments/environment';

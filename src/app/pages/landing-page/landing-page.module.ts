@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { LandingPageRoutingModule } from './landing-page-routing.module';
 import { LandingPageComponent } from './landing-page.component';
-import { NavbarModule } from 'src/app/shared/components/navbar/navbar.module';
 import { NavbarComponent } from 'src/app/shared/components/navbar/navbar.component';
+import { FooterComponent } from 'src/app/shared/components/footer/footer.component';
 
 @NgModule({
   declarations: [
     LandingPageComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
