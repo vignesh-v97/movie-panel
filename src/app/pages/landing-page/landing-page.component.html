@@ -11,7 +11,7 @@
     name="type"
     value="week"
     checked
-    (click)="chooseDayorWeek($event)"
+    (change)="chooseDayOrWeek('week')"
     id=""
   />
   <label class="pr-2" for="day">Day</label>
@@ -20,7 +20,7 @@
     name="type"
     id=""
     value="day"
-    (click)="chooseDayorWeek($event)"
+    (change)="chooseDayOrWeek('day')"
   />
 </div>
 
@@ -29,28 +29,51 @@
   <!-- We've used 3xl here, but feel free to try other max-widths based on your needs -->
   <div class="mx-auto max-w-9xl">
     <div class="bg-white">
-      <div class="max-w-2xl px-4 py-16 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
+      <div class="max-w-2xl px-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 class="mb-12 text-4xl text-black">
           <a routerLink="/movie">Movies</a>
         </h2>
 
         <div
-          class="grid grid-cols-1  gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-5 lg:gap-x-8"
+          class="
+            grid grid-cols-1
+            gap-y-4
+            sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10
+            lg:grid-cols-5 lg:gap-x-8
+          "
         >
-          <div
-            class="relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg  group"
+          <a
+            class="
+              relative
+              flex flex-col
+              overflow-hidden
+              bg-white
+              border border-gray-200
+              rounded-lg
+              group
+            "
             *ngFor="let trendingMovieItem of trendingMovies"
-            (click)="movieDetail(trendingMovieItem)"
+            [routerLink]="['movie', trendingMovieItem.id]"
           >
             <div
-              class="bg-gray-200  aspect-w-3 aspect-h-4 group-hover:opacity-75 sm:aspect-none sm:h-96"
+              class="
+                bg-gray-200
+                aspect-w-3 aspect-h-4
+                group-hover:opacity-75
+                sm:aspect-none sm:h-52
+              "
             >
               <img
                 src="{{
                   tmdbPosterBaseUrl + '/' + trendingMovieItem.poster_path
                 }}"
                 alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
-                class="object-cover object-center w-full h-full  sm:w-full sm:h-full"
+                class="
+                  object-cover object-center
+                  w-full
+                  h-full
+                  sm:w-full sm:h-full
+                "
               />
             </div>
             <div class="flex flex-col flex-1 p-4 space-y-2">
@@ -60,16 +83,8 @@
                   {{ trendingMovieItem.title }}
                 </a>
               </h3>
-              <p class="text-sm text-gray-500">
-                Get the full lineup of our Basic Tees. Have a fresh shirt all
-                week, and an extra for laundry day.
-              </p>
-              <div class="flex flex-col justify-end flex-1">
-                <p class="text-sm italic text-gray-500">8 colors</p>
-                <p class="text-base font-medium text-gray-900">$256</p>
-              </div>
             </div>
-          </div>
+          </a>
         </div>
 
         <div class="flex justify-end mt-2 text-blue-500">
@@ -78,28 +93,50 @@
       </div>
 
       <!-- =========================================== -->
-      <div class="max-w-2xl px-4 py-16 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
+      <div class="max-w-2xl px-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 class="mt-4 mb-12 text-4xl text-black">
           <a routerLink="/series">Series</a>
         </h2>
 
         <div
-          class="grid grid-cols-1  gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-5 lg:gap-x-8"
+          class="
+            grid grid-cols-1
+            gap-y-4
+            sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10
+            lg:grid-cols-5 lg:gap-x-8
+          "
         >
           <div
-            class="relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg  group"
+            class="
+              relative
+              flex flex-col
+              overflow-hidden
+              bg-white
+              border border-gray-200
+              rounded-lg
+              group
+            "
             *ngFor="let trendingSeriesItem of trendingSeries"
-            (click)="seriesDetail(trendingSeriesItem)"
           >
             <div
-              class="bg-gray-200  aspect-w-3 aspect-h-4 group-hover:opacity-75 sm:aspect-none sm:h-96"
+              class="
+                bg-gray-200
+                aspect-w-3 aspect-h-4
+                group-hover:opacity-75
+                sm:aspect-none sm:h-52
+              "
             >
               <img
                 src="{{
                   tmdbPosterBaseUrl + '/' + trendingSeriesItem.poster_path
                 }}"
                 alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
-                class="object-cover object-center w-full h-full  sm:w-full sm:h-full"
+                class="
+                  object-cover object-center
+                  w-full
+                  h-full
+                  sm:w-full sm:h-full
+                "
               />
             </div>
             <div class="flex flex-col flex-1 p-4 space-y-2">
@@ -109,14 +146,6 @@
                   {{ trendingSeriesItem.name }}
                 </a>
               </h3>
-              <p class="text-sm text-gray-500">
-                Get the full lineup of our Basic Tees. Have a fresh shirt all
-                week, and an extra for laundry day.
-              </p>
-              <div class="flex flex-col justify-end flex-1">
-                <p class="text-sm italic text-gray-500">8 colors</p>
-                <p class="text-base font-medium text-gray-900">$256</p>
-              </div>
             </div>
           </div>
         </div>
@@ -126,28 +155,50 @@
         </div>
       </div>
       <!-- =========================================== -->
-      <div class="max-w-2xl px-4 py-16 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
+      <div class="max-w-2xl px-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 class="mt-4 mb-12 text-4xl text-black">
           <a routerLink="/people">Peoples</a>
         </h2>
 
         <div
-          class="grid grid-cols-1  gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-5 lg:gap-x-8"
+          class="
+            grid grid-cols-1
+            gap-y-4
+            sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10
+            lg:grid-cols-5 lg:gap-x-8
+          "
         >
           <div
-            class="relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg  group"
+            class="
+              relative
+              flex flex-col
+              overflow-hidden
+              bg-white
+              border border-gray-200
+              rounded-lg
+              group
+            "
             *ngFor="let trendingPeopleItem of trendingPeopls"
-            (click)="peopleDetail(trendingPeopleItem)"
           >
             <div
-              class="bg-gray-200  aspect-w-3 aspect-h-4 group-hover:opacity-75 sm:aspect-none sm:h-96"
+              class="
+                bg-gray-200
+                aspect-w-3 aspect-h-4
+                group-hover:opacity-75
+                sm:aspect-none sm:h-52
+              "
             >
               <img
                 src="{{
                   tmdbPosterBaseUrl + '/' + trendingPeopleItem.profile_path
                 }}"
                 alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
-                class="object-cover object-center w-full h-full  sm:w-full sm:h-full"
+                class="
+                  object-cover object-center
+                  w-full
+                  h-full
+                  sm:w-full sm:h-full
+                "
               />
             </div>
             <div class="flex flex-col flex-1 p-4 space-y-2">
@@ -157,14 +208,6 @@
                   {{ trendingPeopleItem.name }}
                 </a>
               </h3>
-              <p class="text-sm text-gray-500">
-                Get the full lineup of our Basic Tees. Have a fresh shirt all
-                week, and an extra for laundry day.
-              </p>
-              <div class="flex flex-col justify-end flex-1">
-                <p class="text-sm italic text-gray-500">8 colors</p>
-                <p class="text-base font-medium text-gray-900">$256</p>
-              </div>
             </div>
           </div>
         </div>

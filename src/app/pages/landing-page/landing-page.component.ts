@@ -19,13 +19,17 @@ export class LandingPageComponent implements OnInit {
    selectedSeries:any = [];
    selectedPeople:any = [];
 
-   dayOrWeek:string = 'week'
+   dayOrWeek:'week' | 'day' = 'week'
 
   constructor(public trendingService:TrendingService) {}
 
   ngOnInit(): void {
-    // Movies
-    this.trendingService.getTrending<TrendingMovieItem[]>('movie', this.dayOrWeek).subscribe(trendingResp=> {
+   this.fetchTrendingData()
+  }
+
+  fetchTrendingData(){
+     // Movies
+     this.trendingService.getTrending<TrendingMovieItem[]>('movie', this.dayOrWeek).subscribe(trendingResp=> {
       this.trendingMovies = trendingResp.results.slice(0, 5);
     });
 
@@ -41,30 +45,11 @@ export class LandingPageComponent implements OnInit {
         this.trendingPeopls=trendingResp.results.slice(0, 5)
       });
   }
-
-  movieDetail(movieData:any) {
-    this.selectedMovie = movieData;
-    setTimeout(() => {
-      console.log(this.selectedMovie, "Selected Movie")
-    }, 2000);
-  }
-
-  seriesDetail(seriesData:any) {
-    this.selectedSeries = seriesData;
-    setTimeout(() => {
-      console.log(this.selectedSeries, "Selected Series")
-    }, 2000);
-  }
-
-  peopleDetail(peopleData:any) {
-    this.selectedPeople = peopleData;
-    setTimeout(() => {
-      console.log(this.selectedPeople, "Selected People")
-    }, 2000);
-  }
-
-  chooseDayorWeek(event:any) {
-    this.dayOrWeek = event.target.value;
+  chooseDayOrWeek(value:"week" | "day") {
+    if(this.dayOrWeek !== value){
+      this.dayOrWeek = value;
+      this.fetchTrendingData();
+    }
   }
 
 }

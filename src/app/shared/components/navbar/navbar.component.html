@@ -18,24 +18,29 @@
           <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
           <a
             routerLink=""
-            class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-indigo-500 "
+            routerLinkActive="border-indigo-500"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 border-b-2 border-transparent "
           >
             Home
           </a>
           <a
             routerLink="/movie"
+            routerLinkActive="border-indigo-500"
             class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent  hover:border-gray-300 hover:text-gray-700"
           >
             Movies
           </a>
           <a
             routerLink="/series"
+            routerLinkActive="border-indigo-500"
             class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent  hover:border-gray-300 hover:text-gray-700"
           >
             Series
           </a>
           <a
             routerLink="/people"
+            routerLinkActive="border-indigo-500"
             class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent  hover:border-gray-300 hover:text-gray-700"
           >
             Peoples
