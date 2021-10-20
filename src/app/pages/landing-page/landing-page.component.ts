@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { TrendingMovieItem,TrendingSeriesItem,TrendingPeopleItem } from 'src/app/shared/interfaces/Trending';
 import { TrendingService } from 'src/app/shared/services/trending/trending.service';
 import { environment } from 'src/environments/environment';
@@ -13,19 +13,43 @@ export class LandingPageComponent implements OnInit {
    trendingMovies:TrendingMovieItem[] | null = null;
    trendingSeries:TrendingSeriesItem[] | null = null;
    trendingPeopls:TrendingPeopleItem[] | null = null;
-   tmdbPosterBaseUrl:string = environment.tmdbPosterBaseUrl
+   tmdbPosterBaseUrl:string = environment.tmdbPosterBaseUrl;
+
+   selectedMovie:any = [];
+   selectedSeries:any = [];
+   selectedPeople:any = [];
+
+   dayOrWeek:'week' | 'day' = 'week'
 
   constructor(public trendingService:TrendingService) {}
 
   ngOnInit(): void {
-    // Movies
-    this.trendingService.getTrending<TrendingMovieItem[]>('movie').subscribe(trendingResp=>this.trendingMovies=trendingResp.results);
+   this.fetchTrendingData()
+  }
+
+  fetchTrendingData(){
+     // Movies
+     this.trendingService.getTrending<TrendingMovieItem[]>('movie', this.dayOrWeek).subscribe(trendingResp=> {
+      this.trendingMovies = trendingResp.results.slice(0, 5);
+    });
 
     // Series
-    this.trendingService.getTrending<TrendingSeriesItem[]>('tv').subscribe(trendingResp=>this.trendingSeries=trendingResp.results);
+    this.trendingService.getTrending<TrendingSeriesItem[]>('tv', this.dayOrWeek).subscribe(trendingResp=>
+      {
+        this.trendingSeries=trendingResp.results.slice(0, 5)
+      });
 
     // People
-    this.trendingService.getTrending<TrendingPeopleItem[]>('person').subscribe(trendingResp=>this.trendingPeopls=trendingResp.results);
+    this.trendingService.getTrending<TrendingPeopleItem[]>('person', this.dayOrWeek).subscribe(trendingResp=>
+      {
+        this.trendingPeopls=trendingResp.results.slice(0, 5)
+      });
+  }
+  chooseDayOrWeek(value:"week" | "day") {
+    if(this.dayOrWeek !== value){
+      this.dayOrWeek = value;
+      this.fetchTrendingData();
+    }
   }
 
 }

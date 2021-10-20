@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TrendingSeriesItem } from 'src/app/shared/interfaces/Trending';
+import { TrendingService } from 'src/app/shared/services/trending/trending.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-series',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./series.component.scss']
 })
 export class SeriesComponent implements OnInit {
+  dayOrWeek:string = 'week'
 
-  constructor() { }
+  trendingSeries:TrendingSeriesItem[] | null = null;
+  tmdbPosterBaseUrl:string = environment.tmdbPosterBaseUrl
+
+  constructor(public trendingService:TrendingService) { }
 
   ngOnInit(): void {
+    this.trendingService.getTrending<TrendingSeriesItem[]>('tv', this.dayOrWeek).subscribe(trendingResp=>this.trendingSeries=trendingResp.results);
   }
 
 }

@@ -12,11 +12,7 @@
             <div>
               <img
                 class="object-cover w-full h-32 lg:h-48"
-                src="{{
-                  tmdbBannerBaseUrl +
-                    '/' +
-                    movieDetails.belongs_to_collection.poster_path
-                }}"
+                src="{{ tmdbBannerBaseUrl + '/' + seriesDetails.poster_path }}"
                 alt=""
               />
             </div>
@@ -26,7 +22,7 @@
                   <img
                     class="w-24 h-24 rounded-full  ring-4 ring-white sm:h-32 sm:w-32"
                     src="{{
-                      tmdbBannerBaseUrl + '/' + movieDetails.backdrop_path
+                      tmdbBannerBaseUrl + '/' + seriesDetails.backdrop_path
                     }}"
                   />
                 </div>
@@ -35,14 +31,14 @@
                 >
                   <div class="flex-1 min-w-0 mt-6 sm:hidden 2xl:block">
                     <h1 class="text-2xl font-bold text-gray-900 truncate">
-                      {{ movieDetails.belongs_to_collection.name }}
+                      {{ seriesDetails.name }}
                     </h1>
                   </div>
                 </div>
               </div>
               <div class="flex-1 hidden min-w-0 mt-6 sm:block 2xl:hidden">
                 <h1 class="text-2xl font-bold text-gray-900 truncate">
-                  {{ movieDetails.belongs_to_collection.name }}
+                  {{ seriesDetails.name }}
                 </h1>
               </div>
             </div>
@@ -69,58 +65,62 @@
           <div class="max-w-5xl px-4 mx-auto mt-6 sm:px-6 lg:px-8">
             <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
               <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">Budget</dt>
+                <dt class="text-sm font-medium text-gray-500">
+                  Number of episodes
+                </dt>
                 <dd class="mt-1 text-sm text-gray-900">
-                  {{ movieDetails.budget }}
+                  {{ seriesDetails.number_of_episodes }}
                 </dd>
               </div>
 
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500">Tag Line</dt>
                 <dd class="mt-1 text-sm text-gray-900">
-                  {{ movieDetails.tagline }}
+                  {{ seriesDetails.tagline }}
                 </dd>
               </div>
 
               <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">Title</dt>
+                <dt class="text-sm font-medium text-gray-500">
+                  Number of seasons
+                </dt>
                 <dd class="mt-1 text-sm text-gray-900">
-                  {{ movieDetails.title }}
+                  {{ seriesDetails.number_of_seasons }}
                 </dd>
               </div>
 
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500">Vote Average</dt>
                 <dd class="mt-1 text-sm text-gray-900">
-                  {{ movieDetails.vote_average }}
+                  {{ seriesDetails.vote_average }}
                 </dd>
               </div>
 
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500">Vote Count</dt>
                 <dd class="mt-1 text-sm text-gray-900">
-                  {{ movieDetails.vote_count }}
+                  {{ seriesDetails.vote_count }}
                 </dd>
               </div>
 
               <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">Revenue</dt>
+                <dt class="text-sm font-medium text-gray-500">Popularity</dt>
                 <dd class="mt-1 text-sm text-gray-900">
-                  {{ movieDetails.revenue }}
+                  {{ seriesDetails.popularity }}
                 </dd>
               </div>
 
               <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">Runtime</dt>
+                <dt class="text-sm font-medium text-gray-500">Last air date</dt>
                 <dd class="mt-1 text-sm text-gray-900">
-                  {{ movieDetails.runtime }}
+                  {{ seriesDetails.last_air_date }}
                 </dd>
               </div>
 
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500">Status</dt>
                 <dd class="mt-1 text-sm text-gray-900">
-                  {{ movieDetails.status }}
+                  {{ seriesDetails.status }}
                 </dd>
               </div>
 
@@ -128,7 +128,7 @@
                 <dt class="text-sm font-medium text-gray-500">Overview</dt>
                 <dd class="mt-1 space-y-5 text-sm text-gray-900 max-w-prose">
                   <p>
-                    {{ movieDetails.overview }}
+                    {{ seriesDetails.overview }}
                   </p>
                 </dd>
               </div>
@@ -143,7 +143,7 @@
             <div class="grid grid-cols-1 gap-4 mt-1 sm:grid-cols-2">
               <div
                 class="relative flex items-center px-6 py-5 space-x-3 bg-white border border-gray-300 rounded-lg shadow-sm  hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
-                *ngFor="let company of movieDetails.production_companies"
+                *ngFor="let company of seriesDetails.production_companies"
               >
                 <div class="flex-shrink-0">
                   <img
@@ -162,27 +162,6 @@
                       {{ company.origin_country }}
                     </p>
                   </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- cast list -->
-          <div class="max-w-5xl px-4 pb-12 mx-auto mt-8 sm:px-6 lg:px-8">
-            <h2 class="text-sm font-medium text-gray-500">Cast</h2>
-            <div class="flex flex-wrap w-full mt-2">
-              <div
-                class="relative flex items-center px-4 py-3 mb-2 mr-2 bg-white border border-gray-300 rounded-full shadow-sm  hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
-                *ngFor="let castMember of credits.cast"
-              >
-                <div class="flex-shrink-0">
-                  <img
-                    class="w-10 h-10 rounded-full"
-                    src="{{
-                      tmdbBannerBaseUrl + '/' + castMember.profile_path
-                    }}"
-                    alt="{{ castMember.name }}"
-                  />
                 </div>
               </div>
             </div>
