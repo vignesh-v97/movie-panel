@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ICredits } from 'src/app/shared/interfaces/Credits';
 import { IMovie } from 'src/app/shared/interfaces/Movie';
+import { CreditsService } from 'src/app/shared/services/credits/credits.service';
 import { MoviesService } from 'src/app/shared/services/movies/movies.service';
 import { environment } from 'src/environments/environment';
 
@@ -11,11 +13,15 @@ import { environment } from 'src/environments/environment';
 })
 export class MovieDetailsComponent implements OnInit {
   movieDetails:IMovie | null = null;
+  credits:ICredits | null = null;
   id: string | null = null;
-  // posterPath:string = "";
 
   tmdbBannerBaseUrl:string = environment.tmdbBannerBaseUrl;
-  constructor(public moviesService:MoviesService, private route: ActivatedRoute) { }
+  constructor(
+    public moviesService:MoviesService, 
+    public creditService: CreditsService, 
+    private route: ActivatedRoute
+  )  { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -23,10 +29,11 @@ export class MovieDetailsComponent implements OnInit {
     });
     if(this.id){
       this.moviesService.getMovieDetails(this.id).subscribe((movieDetailsResp)=>{
-      console.log(movieDetailsResp)
-      console.log(movieDetailsResp.backdrop_path)
-      //  this.posterPath = movieDetailsResp.belongs_to_collection.poster_path;
-       this.movieDetails = movieDetailsResp
+      this.movieDetails = movieDetailsResp
+      })
+
+      this.creditService.getCredits(this.id).subscribe((creditResp) => {
+        this.credits = creditResp
       })
     }
   }
