@@ -126,7 +126,7 @@
 
               <div class="sm:col-span-2">
                 <dt class="text-sm font-medium text-gray-500">Overview</dt>
-                <dd class="mt-1 space-y-5 text-sm text-gray-900 max-w-prose">
+                <dd class="mt-1 space-y-5 text-sm text-gray-900">
                   <p>
                     {{ movieDetails.overview }}
                   </p>
@@ -145,12 +145,26 @@
                 class="relative flex items-center px-6 py-5 space-x-3 bg-white border border-gray-300 rounded-lg shadow-sm  hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
                 *ngFor="let company of movieDetails.production_companies"
               >
-                <div class="flex-shrink-0">
+                <div class="flex-shrink-0" *ngIf="company.logo_path">
                   <img
                     class="w-10 h-10 rounded-full"
                     src="{{ tmdbBannerBaseUrl + '/' + company.logo_path }}"
                     alt=""
                   />
+                </div>
+                <div
+                  class="flex items-center justify-center flex-shrink-0 w-10 h-10 "
+                  *ngIf="!company.logo_path"
+                >
+                  <p class="font-bold text-indigo-500 capitalize">
+                    {{ company.name.split(" ")[0][0] }}
+                  </p>
+                  <p
+                    class="font-bold text-indigo-500 capitalize"
+                    *ngIf="company.name.split(' ').length > 1"
+                  >
+                    {{ company.name.split(" ")[1][0] }}
+                  </p>
                 </div>
                 <div class="flex-1 min-w-0">
                   <a href="#" class="focus:outline-none">
