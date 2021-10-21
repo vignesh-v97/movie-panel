@@ -1,10 +1,10 @@
 <app-navbar></app-navbar>
 
-<div class="relative flex h-screen overflow-hidden bg-white">
-  <div class="flex flex-col flex-1 min-w-0 overflow-hidden">
+<div class="relative flex overflow-x-hidden bg-white">
+  <div class="flex flex-col flex-1 min-w-0 overflow-x-hidden">
     <div class="relative z-0 flex flex-1 overflow-hidden">
       <main
-        class="relative z-0 flex-1 overflow-y-auto  focus:outline-none xl:order-last"
+        class="relative z-0 flex-1 h-full overflow-y-hidden  focus:outline-none xl:order-last"
       >
         <article>
           <!-- Profile header -->
@@ -171,20 +171,35 @@
           <div class="max-w-5xl px-4 pb-12 mx-auto mt-8 sm:px-6 lg:px-8">
             <h2 class="text-sm font-medium text-gray-500">Cast</h2>
             <div class="flex flex-wrap w-full mt-2">
-              <div
-                class="relative flex items-center px-4 py-3 mb-2 mr-2 bg-white border border-gray-300 rounded-full shadow-sm  hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
+              <a
+                class="relative flex items-center mb-2 mr-2 bg-white border border-gray-300 rounded-full shadow-sm  hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
                 *ngFor="let castMember of credits.cast"
+                [routerLink]="['/', 'people', castMember.id]"
               >
-                <div class="flex-shrink-0">
+                <div class="flex-shrink-0" *ngIf="castMember.profile_path">
                   <img
-                    class="w-10 h-10 rounded-full"
+                    class="object-cover w-10 h-10 rounded-full"
                     src="{{
                       tmdbBannerBaseUrl + '/' + castMember.profile_path
                     }}"
                     alt="{{ castMember.name }}"
                   />
                 </div>
-              </div>
+                <div
+                  class="flex items-center justify-center flex-shrink-0 w-10 h-10 "
+                  *ngIf="!castMember.profile_path"
+                >
+                  <p class="font-bold text-indigo-500 capitalize">
+                    {{ castMember.name.split(" ")[0][0] }}
+                  </p>
+                  <p
+                    class="font-bold text-indigo-500 capitalize"
+                    *ngIf="castMember.name.split(' ').length > 1"
+                  >
+                    {{ castMember.name.split(" ")[0][1] }}
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
         </article>
