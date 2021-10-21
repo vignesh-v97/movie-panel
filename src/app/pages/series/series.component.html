@@ -33,7 +33,7 @@
               <h3 class="text-sm font-medium text-gray-900">
                 <a href="#">
                   <span aria-hidden="true" class="absolute inset-0"></span>
-                  {{ trendingSeriesItem.name }}
+                  {{ trendingSeriesItem.name | truncate: 20 }}
                 </a>
               </h3>
             </div>

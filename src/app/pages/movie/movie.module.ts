@@ -6,11 +6,10 @@ import { MovieComponent } from './movie.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-
 @NgModule({
   declarations: [
     MovieComponent,
-    MovieDetailsComponent,
+    MovieDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -3,21 +3,22 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
-
-
+import { TruncatePipe } from 'src/app/truncate.pipe';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    TruncatePipe
   ],
   imports: [
     CommonModule,
-    RouterModule 
+    RouterModule ,
   ], 
   exports :[
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    TruncatePipe
   ]
 })
 export class SharedModule { }
