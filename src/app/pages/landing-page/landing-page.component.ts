@@ -16,7 +16,7 @@ export class LandingPageComponent implements OnInit {
    tmdbPosterBaseUrl:string = environment.tmdbPosterBaseUrl;
 
    page:number = 1;
-   initialDayOrWeek:string = "day";
+   initialDayOrWeek:string = "";
 
    selectedMovie:any = [];
    selectedSeries:any = [];
@@ -25,12 +25,14 @@ export class LandingPageComponent implements OnInit {
   constructor(public trendingService:TrendingService) {}
 
   ngOnInit(): void {
+    this.initialDayOrWeek = "week";
     this.fetchTrendingData();
   }
 
   addDayorWeek(data:string) {
     console.log(data)
     this.initialDayOrWeek = data;
+    console.log(data)
     this.fetchTrendingData();
   }
 

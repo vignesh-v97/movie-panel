@@ -5,13 +5,15 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { TruncatePipe } from 'src/app/truncate.pipe';
 import { DayWeekComponent } from './components/day-week/day-week.component';
+import { PaginationDirective } from './pagination.directive';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
     TruncatePipe,
-    DayWeekComponent
+    DayWeekComponent,
+    PaginationDirective
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { DayWeekComponent } from './components/day-week/day-week.component';
     NavbarComponent,
     FooterComponent,
     TruncatePipe,
-    DayWeekComponent
+    DayWeekComponent,
+    PaginationDirective
   ]
 })
 export class SharedModule { }
