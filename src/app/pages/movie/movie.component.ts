@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./movie.component.scss']
 })
 export class MovieComponent implements OnInit {
-  dayOrWeek:string = 'week'
+  dayOrWeek:string = 'week';
+  pageNo:number = 1;
 
   trendingMovies:TrendingMovieItem[] | null = null;
   tmdbPosterBaseUrl:string = environment.tmdbPosterBaseUrl
