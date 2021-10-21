@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./people.component.scss']
 })
 export class PeopleComponent implements OnInit {
-  dayOrWeek:string = 'week'
+  dayOrWeek:string = 'week';
+  page:number = 1;
 
   trendingPeopls:TrendingPeopleItem[] | null = null;
   tmdbPosterBaseUrl:string = environment.tmdbPosterBaseUrl
@@ -17,7 +18,7 @@ export class PeopleComponent implements OnInit {
   constructor(public trendingService:TrendingService) { }
 
   ngOnInit(): void {
-    this.trendingService.getTrending<TrendingPeopleItem[]>('person', this.dayOrWeek).subscribe(trendingResp=>this.trendingPeopls=trendingResp.results);
+    this.trendingService.getTrending<TrendingPeopleItem[]>('person', this.dayOrWeek, this.page).subscribe(trendingResp=>this.trendingPeopls=trendingResp.results);
   }
 
 }

@@ -10,14 +10,14 @@ import { environment } from 'src/environments/environment';
 })
 export class MovieComponent implements OnInit {
   dayOrWeek:string = 'week';
-  pageNo:number = 1;
+  page:number = 1;
 
   trendingMovies:TrendingMovieItem[] | null = null;
   tmdbPosterBaseUrl:string = environment.tmdbPosterBaseUrl
   constructor(public trendingService:TrendingService) { }
 
   ngOnInit(): void {
-    this.trendingService.getTrending<TrendingMovieItem[]>('movie', this.dayOrWeek).subscribe(trendingResp=>this.trendingMovies=trendingResp.results);
+    this.trendingService.getTrending<TrendingMovieItem[]>('movie', this.dayOrWeek, this.page).subscribe(trendingResp=>this.trendingMovies=trendingResp.results);
   }
 
 }

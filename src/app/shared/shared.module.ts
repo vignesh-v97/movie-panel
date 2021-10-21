@@ -4,12 +4,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { TruncatePipe } from 'src/app/truncate.pipe';
+import { DayWeekComponent } from './components/day-week/day-week.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
-    TruncatePipe
+    TruncatePipe,
+    DayWeekComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { TruncatePipe } from 'src/app/truncate.pipe';
   exports :[
     NavbarComponent,
     FooterComponent,
-    TruncatePipe
+    TruncatePipe,
+    DayWeekComponent
   ]
 })
 export class SharedModule { }

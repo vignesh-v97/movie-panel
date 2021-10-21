@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./series.component.scss']
 })
 export class SeriesComponent implements OnInit {
-  dayOrWeek:string = 'week'
+  dayOrWeek:string = 'week';
+  page:number = 1;
 
   trendingSeries:TrendingSeriesItem[] | null = null;
   tmdbPosterBaseUrl:string = environment.tmdbPosterBaseUrl
@@ -17,7 +18,10 @@ export class SeriesComponent implements OnInit {
   constructor(public trendingService:TrendingService) { }
 
   ngOnInit(): void {
-    this.trendingService.getTrending<TrendingSeriesItem[]>('tv', this.dayOrWeek).subscribe(trendingResp=>this.trendingSeries=trendingResp.results);
+    this.trendingService.getTrending<TrendingSeriesItem[]>('tv', this.dayOrWeek, this.page).subscribe(trendingResp=> {
+      console.log(trendingResp)
+      this.trendingSeries=trendingResp.results
+    });
   }
 
 }

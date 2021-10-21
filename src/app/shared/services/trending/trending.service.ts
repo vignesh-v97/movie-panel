@@ -10,7 +10,7 @@ import { TrendingResponse } from '../../interfaces/Trending';
 export class TrendingService {
 
   constructor(private http: HttpClient) {}
-  public getTrending<Type>(mediaType:string, dayOrWeek:string): Observable<TrendingResponse<Type>> {
-    return this.http.get<TrendingResponse<Type>>(`${environment.tmdbBaseUrl}/trending/${mediaType}/${dayOrWeek}?api_key=${environment.tmdbApiKey}&page=2`)
+  public getTrending<Type>(mediaType:string, dayOrWeek:string, pageNo:number): Observable<TrendingResponse<Type>> {
+    return this.http.get<TrendingResponse<Type>>(`${environment.tmdbBaseUrl}/trending/${mediaType}/${dayOrWeek}?api_key=${environment.tmdbApiKey}&page=${pageNo}`)
   }
 }

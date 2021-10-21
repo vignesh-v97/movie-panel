@@ -2,27 +2,7 @@
 
 <app-navbar></app-navbar>
 
-<div class="flex items-center justify-end w-4/5 mx-auto mt-4">
-  <p class="pr-2 bold">Type:</p>
-  <label class="pr-2" for="week">Week</label>
-  <input
-    class="mr-3"
-    type="radio"
-    name="type"
-    value="week"
-    checked
-    (change)="chooseDayOrWeek('week')"
-    id=""
-  />
-  <label class="pr-2" for="day">Day</label>
-  <input
-    type="radio"
-    name="type"
-    id=""
-    value="day"
-    (change)="chooseDayOrWeek('day')"
-  />
-</div>
+<app-day-week (dayOrWeek)="addDayorWeek($event)"></app-day-week>
 
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -35,22 +15,45 @@
         </h2>
 
         <div
-          class="grid grid-cols-1  gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-5 lg:gap-x-8"
+          class="
+            grid grid-cols-1
+            gap-y-4
+            sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10
+            lg:grid-cols-5 lg:gap-x-8
+          "
         >
           <a
-            class="relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg  group"
+            class="
+              relative
+              flex flex-col
+              overflow-hidden
+              bg-white
+              border border-gray-200
+              rounded-lg
+              group
+            "
             *ngFor="let trendingMovieItem of trendingMovies"
             [routerLink]="['movie', trendingMovieItem.id]"
           >
             <div
-              class="bg-gray-200  aspect-w-3 aspect-h-4 group-hover:opacity-75 sm:aspect-none sm:h-52"
+              class="
+                bg-gray-200
+                aspect-w-3 aspect-h-4
+                group-hover:opacity-75
+                sm:aspect-none sm:h-52
+              "
             >
               <img
                 src="{{
                   tmdbPosterBaseUrl + '/' + trendingMovieItem.poster_path
                 }}"
                 alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
-                class="object-cover object-center w-full h-full  sm:w-full sm:h-full"
+                class="
+                  object-cover object-center
+                  w-full
+                  h-full
+                  sm:w-full sm:h-full
+                "
               />
             </div>
             <div class="flex flex-col flex-1 p-4">
@@ -76,22 +79,45 @@
         </h2>
 
         <div
-          class="grid grid-cols-1  gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-5 lg:gap-x-8"
+          class="
+            grid grid-cols-1
+            gap-y-4
+            sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10
+            lg:grid-cols-5 lg:gap-x-8
+          "
         >
           <a
-            class="relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg  group"
+            class="
+              relative
+              flex flex-col
+              overflow-hidden
+              bg-white
+              border border-gray-200
+              rounded-lg
+              group
+            "
             *ngFor="let trendingSeriesItem of trendingSeries"
             [routerLink]="['series', trendingSeriesItem.id]"
           >
             <div
-              class="bg-gray-200  aspect-w-3 aspect-h-4 group-hover:opacity-75 sm:aspect-none sm:h-52"
+              class="
+                bg-gray-200
+                aspect-w-3 aspect-h-4
+                group-hover:opacity-75
+                sm:aspect-none sm:h-52
+              "
             >
               <img
                 src="{{
                   tmdbPosterBaseUrl + '/' + trendingSeriesItem.poster_path
                 }}"
                 alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
-                class="object-cover object-center w-full h-full  sm:w-full sm:h-full"
+                class="
+                  object-cover object-center
+                  w-full
+                  h-full
+                  sm:w-full sm:h-full
+                "
               />
             </div>
             <div class="flex flex-col flex-1 p-4 space-y-2">
@@ -116,22 +142,45 @@
         </h2>
 
         <div
-          class="grid grid-cols-1  gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-5 lg:gap-x-8"
+          class="
+            grid grid-cols-1
+            gap-y-4
+            sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10
+            lg:grid-cols-5 lg:gap-x-8
+          "
         >
           <a
-            class="relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg  group"
+            class="
+              relative
+              flex flex-col
+              overflow-hidden
+              bg-white
+              border border-gray-200
+              rounded-lg
+              group
+            "
             *ngFor="let trendingPeopleItem of trendingPeopls"
             [routerLink]="['people', trendingPeopleItem.id]"
           >
             <div
-              class="bg-gray-200  aspect-w-3 aspect-h-4 group-hover:opacity-75 sm:aspect-none sm:h-52"
+              class="
+                bg-gray-200
+                aspect-w-3 aspect-h-4
+                group-hover:opacity-75
+                sm:aspect-none sm:h-52
+              "
             >
               <img
                 src="{{
                   tmdbPosterBaseUrl + '/' + trendingPeopleItem.profile_path
                 }}"
                 alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
-                class="object-cover object-center w-full h-full  sm:w-full sm:h-full"
+                class="
+                  object-cover object-center
+                  w-full
+                  h-full
+                  sm:w-full sm:h-full
+                "
               />
             </div>
             <div class="flex flex-col flex-1 p-4 space-y-2">
