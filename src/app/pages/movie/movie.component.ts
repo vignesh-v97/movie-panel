@@ -23,7 +23,7 @@ export class MovieComponent implements OnInit {
     this.fetchData();
     setInterval(() => {
       this.loaded = true;
-    }, 1000)
+    }, 500)
   }
 
   fetchData() {
