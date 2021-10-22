@@ -20,13 +20,6 @@ export class MovieComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-    setTimeout(() => {
-      for(let i=1;i<=this.totalPages;i++) {
-        this.pages.push(i);
-        console.log(this.pages)
-      }
-    }, 1000);
-    
   }
 
   fetchData() {

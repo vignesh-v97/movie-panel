@@ -12,16 +12,27 @@ export class SeriesComponent implements OnInit {
   dayOrWeek:string = 'week';
   page:number = 1;
 
-  trendingSeries:TrendingSeriesItem[] | null = null;
+  trendingSeries:TrendingSeriesItem[] | any[]  =Array();
   tmdbPosterBaseUrl:string = environment.tmdbPosterBaseUrl
 
   constructor(public trendingService:TrendingService) { }
 
   ngOnInit(): void {
+    this.fetchData();
+  }
+
+  fetchData() {
     this.trendingService.getTrending<TrendingSeriesItem[]>('tv', this.dayOrWeek, this.page).subscribe(trendingResp=> {
-      console.log(trendingResp)
-      this.trendingSeries=trendingResp.results
+      console.log(trendingResp.results)
+      this.trendingSeries = [...this.trendingSeries, ...trendingResp.results];
+      // this.trendingSeries.concat(trendingResp.results);
     });
+  }
+
+  onScroll() {
+    this.page += 1;
+    this.fetchData();
+    // this.trendingSeries.push
   }
 
 }
