@@ -13,45 +13,23 @@
         <h2 class="mb-12 text-4xl text-black">Movies</h2>
 
         <div
-          class="
-            grid grid-cols-1
-            gap-y-4
-            sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10
-            lg:grid-cols-5 lg:gap-x-8
-          "
+          class="grid grid-cols-1  gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-5 lg:gap-x-8"
         >
           <a
-            class="
-              relative
-              flex flex-col
-              overflow-hidden
-              bg-white
-              border border-gray-200
-              rounded-lg
-              group
-            "
+            class="relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg  group"
             *ngFor="let trendingMovieItem of trendingMovies"
             [routerLink]="[trendingMovieItem.id]"
           >
             <div
-              class="
-                bg-gray-200
-                aspect-w-3 aspect-h-4
-                group-hover:opacity-75
-                sm:aspect-none sm:h-52
-              "
+              class="bg-gray-200  aspect-w-3 aspect-h-4 group-hover:opacity-75 sm:aspect-none"
             >
               <app-skeleton-loader *ngIf="loaded"></app-skeleton-loader>
               <img
                 *ngIf="!loaded"
+                style="height: 280px"
                 src="https://t4.ftcdn.net/jpg/04/06/91/91/360_F_406919161_J0pGxe1sewqnk5dnvyRS77MKmEd6SVac.jpg"
                 alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
-                class="
-                  object-cover object-center
-                  w-full
-                  h-full
-                  sm:w-full sm:h-full
-                "
+                class="object-cover object-center w-full h-full  sm:w-full sm:h-full"
               />
 
               <app-skeleton-loader *ngIf="!loaded"></app-skeleton-loader>
@@ -61,15 +39,10 @@
                   tmdbPosterBaseUrl + '/' + trendingMovieItem.poster_path
                 }}"
                 alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
-                class="
-                  object-cover object-center
-                  w-full
-                  h-full
-                  sm:w-full sm:h-full
-                "
+                class="object-cover object-center w-full h-full  sm:w-full sm:h-full"
               />
             </div>
-            <div class="flex flex-col flex-1 p-4 space-y-2">
+            <div class="flex flex-col flex-1 p-2 space-y-2" *ngIf="loaded">
               <h3 class="text-sm font-medium text-gray-900">
                 <a href="#">
                   <span aria-hidden="true" class="absolute inset-0"></span>
@@ -86,31 +59,12 @@
 
 <!-- pagination -->
 <div
-  class="
-    flex
-    items-center
-    justify-between
-    w-4/5
-    px-4
-    mx-auto
-    border-t border-gray-200
-    sm:px-0
-  "
+  class="flex items-center justify-between w-4/5 px-4 mx-auto border-t border-gray-200  sm:px-0"
 >
   <div class="flex flex-1 w-0 -mt-px">
     <button
       (click)="pagination.first()"
-      class="
-        inline-flex
-        items-center
-        pt-4
-        pr-1
-        text-sm
-        font-medium
-        text-gray-500
-        border-t-2 border-transparent
-        hover:text-gray-700 hover:border-gray-300
-      "
+      class="inline-flex items-center pt-4 pr-1 text-sm font-medium text-gray-500 border-t-2 border-transparent  hover:text-gray-700 hover:border-gray-300"
       [disabled]="pagination.isFirst"
     >
       <!-- Heroicon name: solid/arrow-narrow-left -->
@@ -133,17 +87,7 @@
     <button
       (click)="pagination.prev()"
       [disabled]="pagination.isFirst"
-      class="
-        inline-flex
-        items-center
-        pt-4
-        pr-1
-        text-sm
-        font-medium
-        text-gray-500
-        border-t-2 border-transparent
-        hover:text-gray-700 hover:border-gray-300
-      "
+      class="inline-flex items-center pt-4 pr-1 text-sm font-medium text-gray-500 border-t-2 border-transparent  hover:text-gray-700 hover:border-gray-300"
     >
       <!-- Heroicon name: solid/arrow-narrow-left -->
       <svg
@@ -174,17 +118,7 @@
     <button
       (click)="pagination.next()"
       [disabled]="pagination.isLast"
-      class="
-        inline-flex
-        items-center
-        pt-4
-        pl-1
-        text-sm
-        font-medium
-        text-gray-500
-        border-t-2 border-transparent
-        hover:text-gray-700 hover:border-gray-300
-      "
+      class="inline-flex items-center pt-4 pl-1 text-sm font-medium text-gray-500 border-t-2 border-transparent  hover:text-gray-700 hover:border-gray-300"
     >
       Next
       <!-- Heroicon name: solid/arrow-narrow-right -->
@@ -205,17 +139,7 @@
     <button
       (click)="pagination.last()"
       [disabled]="pagination.isLast"
-      class="
-        inline-flex
-        items-center
-        pt-4
-        pl-1
-        text-sm
-        font-medium
-        text-gray-500
-        border-t-2 border-transparent
-        hover:text-gray-700 hover:border-gray-300
-      "
+      class="inline-flex items-center pt-4 pl-1 text-sm font-medium text-gray-500 border-t-2 border-transparent  hover:text-gray-700 hover:border-gray-300"
     >
       Last
       <!-- Heroicon name: solid/arrow-narrow-right -->
