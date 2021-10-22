@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./movie.component.scss']
 })
 export class MovieComponent implements OnInit {
+  loaded:boolean = false;
   dayOrWeek:string = 'week';
   page:number = 1;
   pages:number[]=[];
@@ -20,6 +21,9 @@ export class MovieComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
+    setInterval(() => {
+      this.loaded = true;
+    }, 1000)
   }
 
   fetchData() {

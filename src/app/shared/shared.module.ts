@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { TruncatePipe } from 'src/app/truncate.pipe';
 import { DayWeekComponent } from './components/day-week/day-week.component';
 import { PaginationDirective } from './pagination.directive';
+import { SkeletonLoaderModule } from './skeleton-loader/skeleton-loader.module';
+
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import { PaginationDirective } from './pagination.directive';
   imports: [
     CommonModule,
     RouterModule ,
+    SkeletonLoaderModule
   ], 
   exports :[
     NavbarComponent,
     FooterComponent,
     TruncatePipe,
     DayWeekComponent,
-    PaginationDirective
+    PaginationDirective,
+    SkeletonLoaderModule
   ]
 })
 export class SharedModule { }
