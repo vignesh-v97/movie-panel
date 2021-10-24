@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { SeriesRoutingModule } from './series-routing.module';
 import { SeriesComponent } from './series.component';
@@ -15,7 +16,8 @@ import { SeriesDetailComponent } from './series-detail/series-detail.component';
   imports: [
     CommonModule,
     SeriesRoutingModule,
-    SharedModule
+    SharedModule,
+    InfiniteScrollModule
   ]
 })
 export class SeriesModule { }

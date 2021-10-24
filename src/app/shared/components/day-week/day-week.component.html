@@ -1,0 +1,23 @@
+<div class="flex items-center justify-end w-4/5 mx-auto mt-4">
+  <p class="pr-2 bold">Type:</p>
+  <label class="pr-2" for="week">Week</label>
+  <input
+    class="mr-3"
+    type="radio"
+    name="type"
+    value="week"
+    #season
+    checked
+    (click)="chooseDayOrWeek(season.value)"
+    id=""
+  />
+  <label class="pr-2" for="day">Day</label>
+  <input
+    type="radio"
+    name="type"
+    id=""
+    value="day"
+    #season
+    (click)="chooseDayOrWeek(season.value)"
+  />
+</div>

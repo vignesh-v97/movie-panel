@@ -15,41 +15,43 @@ export class LandingPageComponent implements OnInit {
    trendingPeopls:TrendingPeopleItem[] | null = null;
    tmdbPosterBaseUrl:string = environment.tmdbPosterBaseUrl;
 
+   page:number = 1;
+   initialDayOrWeek:string = "";
+
    selectedMovie:any = [];
    selectedSeries:any = [];
    selectedPeople:any = [];
 
-   dayOrWeek:'week' | 'day' = 'week'
-
   constructor(public trendingService:TrendingService) {}
 
   ngOnInit(): void {
-   this.fetchTrendingData()
+    this.initialDayOrWeek = "week";
+    this.fetchTrendingData();
+  }
+
+  addDayorWeek(data:string) {
+    console.log(data)
+    this.initialDayOrWeek = data;
+    console.log(data)
+    this.fetchTrendingData();
   }
 
   fetchTrendingData(){
-     // Movies
-     this.trendingService.getTrending<TrendingMovieItem[]>('movie', this.dayOrWeek).subscribe(trendingResp=> {
-      this.trendingMovies = trendingResp.results.slice(0, 5);
-    });
+    // Movies
+    this.trendingService.getTrending<TrendingMovieItem[]>('movie', this.initialDayOrWeek, this.page).subscribe(trendingResp=> {
+     this.trendingMovies = trendingResp.results.slice(0, 5);
+   });
 
-    // Series
-    this.trendingService.getTrending<TrendingSeriesItem[]>('tv', this.dayOrWeek).subscribe(trendingResp=>
-      {
-        this.trendingSeries=trendingResp.results.slice(0, 5)
-      });
+   // Series
+   this.trendingService.getTrending<TrendingSeriesItem[]>('tv', this.initialDayOrWeek, this.page).subscribe(trendingResp=>
+     {
+       this.trendingSeries=trendingResp.results.slice(0, 5)
+     });
 
-    // People
-    this.trendingService.getTrending<TrendingPeopleItem[]>('person', this.dayOrWeek).subscribe(trendingResp=>
-      {
-        this.trendingPeopls=trendingResp.results.slice(0, 5)
-      });
-  }
-  chooseDayOrWeek(value:"week" | "day") {
-    if(this.dayOrWeek !== value){
-      this.dayOrWeek = value;
-      this.fetchTrendingData();
+   // People
+   this.trendingService.getTrending<TrendingPeopleItem[]>('person', this.initialDayOrWeek, this.page).subscribe(trendingResp=>
+     {
+       this.trendingPeopls=trendingResp.results.slice(0, 5)
+     });
     }
-  }
-
 }

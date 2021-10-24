@@ -4,7 +4,7 @@ export interface IPeople {
  biography: string;
  birthday: string;
  deathday?: any;
- gender: number;
+ gender: string | number;
  homepage: string;
  id: number;
  imdb_id: string;

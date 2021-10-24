@@ -24,6 +24,10 @@ export class PeopleDetailComponent implements OnInit {
       this.peopleService.getPeopleDetails(this.id).subscribe(
         (peopleDetailsResp) => {
           this.personDetail = peopleDetailsResp
+          if(this.personDetail.gender == 1) 
+            return this.personDetail.gender = "Female";
+          else 
+            return this.personDetail.gender = "Male";
         }
       )
     }

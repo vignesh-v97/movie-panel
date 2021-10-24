@@ -2,13 +2,15 @@
 
 <app-navbar></app-navbar>
 
+<app-day-week></app-day-week>
+
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
   <!-- We've used 3xl here, but feel free to try other max-widths based on your needs -->
   <div class="mx-auto max-w-9xl">
     <div class="bg-white">
       <!-- =========================================== -->
-      <div class="max-w-2xl px-4 mx-auto sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div class="max-w-2xl px-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 class="mb-12 text-4xl text-black">People</h2>
 
         <div
@@ -20,7 +22,7 @@
             [routerLink]="[trendingPeopleItem.id]"
           >
             <div
-              class="bg-gray-200  aspect-w-3 aspect-h-4 group-hover:opacity-75 sm:aspect-none sm:h-52"
+              class="bg-gray-200  aspect-w-3 aspect-h-4 group-hover:opacity-75 sm:aspect-none"
             >
               <img
                 src="{{
@@ -30,7 +32,7 @@
                 class="object-cover object-center w-full h-full  sm:w-full sm:h-full"
               />
             </div>
-            <div class="flex flex-col flex-1 p-4 space-y-2">
+            <div class="flex flex-col flex-1 p-2 space-y-2">
               <h3 class="text-sm font-medium text-gray-900">
                 <a href="#">
                   <span aria-hidden="true" class="absolute inset-0"></span>

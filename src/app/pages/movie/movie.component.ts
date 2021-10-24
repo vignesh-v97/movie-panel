@@ -9,14 +9,37 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./movie.component.scss']
 })
 export class MovieComponent implements OnInit {
-  dayOrWeek:string = 'week'
+  loaded:boolean = false;
+  dayOrWeek:string = 'week';
+  page:number = 1;
+  pages:number[]=[];
+  totalPages: number;
 
   trendingMovies:TrendingMovieItem[] | null = null;
   tmdbPosterBaseUrl:string = environment.tmdbPosterBaseUrl
   constructor(public trendingService:TrendingService) { }
 
   ngOnInit(): void {
-    this.trendingService.getTrending<TrendingMovieItem[]>('movie', this.dayOrWeek).subscribe(trendingResp=>this.trendingMovies=trendingResp.results);
+    this.fetchData();
+    setInterval(() => {
+      this.loaded = true;
+    }, 500)
   }
 
+  fetchData() {
+    this.trendingService.getTrending<TrendingMovieItem[]>('movie', this.dayOrWeek, this.page).subscribe(trendingResp=>{
+      this.totalPages = trendingResp.total_pages;
+      this.trendingMovies=trendingResp.results;
+      console.log(this.totalPages)
+    });
+  }
+
+  initialPage(number:number) {
+    this.page = number;
+  }
+
+  onPageChange(pageNo: number) {
+    this.page = pageNo;
+    this.fetchData();
+  }
 }
