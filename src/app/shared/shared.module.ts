@@ -7,6 +7,7 @@ import { TruncatePipe } from 'src/app/truncate.pipe';
 import { DayWeekComponent } from './components/day-week/day-week.component';
 import { PaginationDirective } from './pagination.directive';
 import { SkeletonLoaderModule } from './skeleton-loader/skeleton-loader.module';
+import { ImgLoadingHelperDirective } from './directives/img-loading-helper.directive';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SkeletonLoaderModule } from './skeleton-loader/skeleton-loader.module';
     FooterComponent,
     TruncatePipe,
     DayWeekComponent,
-    PaginationDirective
+    PaginationDirective,
+    ImgLoadingHelperDirective
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { SkeletonLoaderModule } from './skeleton-loader/skeleton-loader.module';
     TruncatePipe,
     DayWeekComponent,
     PaginationDirective,
-    SkeletonLoaderModule
+    SkeletonLoaderModule,
+    ImgLoadingHelperDirective
   ]
 })
 export class SharedModule { }

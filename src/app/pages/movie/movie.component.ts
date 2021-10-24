@@ -21,16 +21,12 @@ export class MovieComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-    setInterval(() => {
-      this.loaded = true;
-    }, 500)
   }
 
   fetchData() {
     this.trendingService.getTrending<TrendingMovieItem[]>('movie', this.dayOrWeek, this.page).subscribe(trendingResp=>{
       this.totalPages = trendingResp.total_pages;
       this.trendingMovies=trendingResp.results;
-      console.log(this.totalPages)
     });
   }
 
