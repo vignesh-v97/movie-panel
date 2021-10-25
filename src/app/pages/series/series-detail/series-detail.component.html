@@ -14,6 +14,8 @@
                 class="object-cover w-full h-32 lg:h-80"
                 src="{{ tmdbBannerBaseUrl + '/' + seriesDetails.poster_path }}"
                 alt=""
+                appImgLoadingHelper
+                placeholderSrc="/assets/images/banner-ghost.png"
               />
             </div>
             <div class="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
@@ -24,6 +26,8 @@
                     src="{{
                       tmdbBannerBaseUrl + '/' + seriesDetails.backdrop_path
                     }}"
+                    appImgLoadingHelper
+                    placeholderSrc="/assets/images/img-placeholder.png"
                   />
                 </div>
                 <div

@@ -23,16 +23,13 @@ export class SeriesComponent implements OnInit {
 
   fetchData() {
     this.trendingService.getTrending<TrendingSeriesItem[]>('tv', this.dayOrWeek, this.page).subscribe(trendingResp=> {
-      console.log(trendingResp.results)
       this.trendingSeries = [...this.trendingSeries, ...trendingResp.results];
-      // this.trendingSeries.concat(trendingResp.results);
     });
   }
 
   onScroll() {
     this.page += 1;
     this.fetchData();
-    // this.trendingSeries.push
   }
 
 }
