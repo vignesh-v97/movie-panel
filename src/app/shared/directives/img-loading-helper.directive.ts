@@ -12,9 +12,8 @@ import {
 export class ImgLoadingHelperDirective implements OnInit {
  private _src: string;
 
- @Input()
- @HostBinding("src")
- src: string;
+ @Input() @HostBinding("src") src: string;
+ @Input() @HostBinding("placeholderSrc") placeholderSrc: string;
 
  constructor() {}
 
@@ -28,7 +27,6 @@ export class ImgLoadingHelperDirective implements OnInit {
 
  ngOnInit(): void {
    this._src = this.src;
-   this.src =
-     "assets/images/img-placeholder.png";
-   }
+   this.src = this.placeholderSrc;
+}
 }
