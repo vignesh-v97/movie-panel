@@ -30,6 +30,7 @@ export class MovieDetailsComponent implements OnInit {
     if(this.id){
       this.moviesService.getMovieDetails(this.id).subscribe((movieDetailsResp)=>{
       this.movieDetails = movieDetailsResp
+      console.log(this.movieDetails , '🟢')
       })
 
       this.creditService.getCredits(this.id).subscribe((creditResp) => {

@@ -14,19 +14,22 @@ export class ImgLoadingHelperDirective implements OnInit {
 
  @Input() @HostBinding("src") src: string;
  @Input() @HostBinding("placeholderSrc") placeholderSrc: string;
+ @Input() @HostBinding("noData") noData: string;
 
  constructor() {}
 
  @HostListener("load")
  onLoad() {
    this.src = this._src;
- }
-
- @HostListener("error")
- onError() {}
-
- ngOnInit(): void {
-   this._src = this.src;
-   this.src = this.placeholderSrc;
+  }
+  
+  @HostListener("error")
+  onError() {
+    this.src = this.noData;
+  }
+  
+  ngOnInit(): void {
+    this._src = this.src;
+    this.src = this.placeholderSrc;
 }
 }
