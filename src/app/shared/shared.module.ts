@@ -9,7 +9,6 @@ import { ImgLoadingHelperDirective } from './directives/img-loading-helper.direc
 import { PaginationDirective } from './directives/pagination.directive';
 import { FormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     NavbarComponent,
