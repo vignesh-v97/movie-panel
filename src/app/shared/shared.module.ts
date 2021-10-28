@@ -5,10 +5,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { TruncatePipe } from 'src/app/truncate.pipe';
 import { DayWeekComponent } from './components/day-week/day-week.component';
-import { SkeletonLoaderModule } from './skeleton-loader/skeleton-loader.module';
 import { ImgLoadingHelperDirective } from './directives/img-loading-helper.directive';
 import { PaginationDirective } from './directives/pagination.directive';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,22 +15,21 @@ import { PaginationDirective } from './directives/pagination.directive';
     FooterComponent,
     TruncatePipe,
     DayWeekComponent,
+    ImgLoadingHelperDirective,
     PaginationDirective,
-    ImgLoadingHelperDirective
   ],
   imports: [
     CommonModule,
     RouterModule ,
-    SkeletonLoaderModule
-  ], 
+    FormsModule
+  ],
   exports :[
     NavbarComponent,
     FooterComponent,
     TruncatePipe,
     DayWeekComponent,
     PaginationDirective,
-    SkeletonLoaderModule,
-    ImgLoadingHelperDirective
+    ImgLoadingHelperDirective,
   ]
 })
 export class SharedModule { }

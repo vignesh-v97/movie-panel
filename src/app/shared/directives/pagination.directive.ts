@@ -1,119 +1,121 @@
 import {
- Directive,
- OnChanges,
- OnInit,
- SimpleChanges,
- Input,
- Output,
- EventEmitter,
- ElementRef,
- Renderer2,
- HostBinding,
- HostListener
-} from "@angular/core";
+    Directive,
+    OnChanges,
+    OnInit,
+    SimpleChanges,
+    Input,
+    Output,
+    EventEmitter,
+    ElementRef,
+    Renderer2,
+    HostBinding,
+    HostListener,
+  } from "@angular/core";
 
-@Directive({
- selector: "[appPagination]",
- exportAs: "appPagination"
-})
-export class PaginationDirective implements OnChanges, OnInit {
- @Input() pageNo = 1;
- @Input() totalPages = 1;
+  @Directive({
+    selector: "[appPagination]",
+    exportAs: "appPagination"
+  })
 
- @Output() pageChange = new EventEmitter<number>();
 
- constructor(private el: ElementRef, private renderer: Renderer2) {}
+  export class PaginationDirective implements OnChanges, OnInit {
 
- ngOnInit() {
-   // In case no value is passed
-   this.setValue(this.pageNo);
- }
+    @Input() pageNo = 1;
+    @Input() totalPages = 1;
+    @Output() pageChange = new EventEmitter<number>();
 
- ngOnChanges({ pageNo, totalPages }: SimpleChanges) {
-   // Needs to be checked before pageNo
-   if (totalPages) {
-     this.onTotalPagesInput();
-   }
+    constructor(private el: ElementRef, private renderer: Renderer2) {}
 
-   if (pageNo) {
-     this.onPageNoInput();
-   }
- }
+    ngOnInit() {
+      // In case no value is passed
+      this.setValue(this.pageNo);
+    }
 
- @HostListener("input", ["$event.target.value"]) onInput(val:any) {
-   this.setValue(this.getParsedValue(val));
- }
+    ngOnChanges({ pageNo, totalPages }: SimpleChanges) {
+      // Needs to be checked before pageNo
+      if (totalPages) {
+        this.onTotalPagesInput();
+      }
 
- @HostListener("change", ["$event.target.value"]) onChange(val:any) {
-   if (val === "") {
-     this.setValue(1);
-   }
+      if (pageNo) {
+        this.onPageNoInput();
+      }
+    }
 
-   if (this.isOutOfRange(val)) {
-     this.setValue(this.totalPages);
-   }
+    @HostListener("input", ["$event.target.value"]) onInput(val: string) {
+      this.setValue(this.getParsedValue(val));
+    }
 
-   this.pageNo = Number(this.el.nativeElement.value);
-   this.pageChange.emit(this.pageNo);
- }
+    @HostListener("change", ["$event.target.value"]) onChange(val: string) {
+      if (val === "") {
+        this.setValue(1);
+      }
 
- get isFirst(): boolean {
-   return this.pageNo === 1;
- }
+      if (this.isOutOfRange(val)) {
+        this.setValue(this.totalPages);
+      }
 
- get isLast(): boolean {
-   return this.pageNo === this.totalPages;
- }
+      this.pageNo = Number(this.el.nativeElement.value);
+      this.pageChange.emit(this.pageNo);
+    }
 
- first() {
-   this.setPage(1);
- }
+    public get isFirst(): boolean {
+      return this.pageNo === 1;
+    }
 
- prev() {
-   this.setPage(Math.max(1, this.pageNo - 1));
- }
+    public get isLast(): boolean {
+      return this.pageNo === this.totalPages;
+    }
 
- next() {
-   this.setPage(Math.min(this.totalPages, this.pageNo + 1));
- }
+    public first() {
+      this.setPage(1);
+    }
 
- last() {
-   this.setPage(this.totalPages);
- }
+    public prev() {
+      this.setPage(Math.max(1, this.pageNo - 1));
+    }
 
- private setValue(val: string | number) {
-   this.renderer.setProperty(this.el.nativeElement, "value", String(val));
- }
+    public next() {
+      this.setPage(Math.min(this.totalPages, this.pageNo + 1));
+    }
 
- private setPage(val: number) {
-   this.pageNo = val;
-   this.setValue(this.pageNo);
-   this.pageChange.emit(this.pageNo);
- }
+    public last() {
+      this.setPage(this.totalPages);
+    }
 
- private getParsedValue(val: string): string {
-   return val.replace(/(^0)|([^0-9]+$)/, "");
- }
+    private setValue(val: string | number) {
+      this.renderer.setProperty(this.el.nativeElement, "value", String(val));
+    }
 
- private isOutOfRange(val: string): boolean {
-   return Number(val) > this.totalPages;
- }
+    private setPage(val: number) {
+      this.pageNo = val;
+      this.setValue(this.pageNo);
+      this.pageChange.emit(this.pageNo);
+    }
 
- private onTotalPagesInput() {
-   if (typeof this.totalPages !== "number") {
-     this.totalPages = 1;
-   }
- }
+    private getParsedValue(val: string): string {
+      return val.replace(/(^0)|([^0-9]+$)/, "");
+    }
 
- private onPageNoInput() {
-   if (
-     typeof this.pageNo !== "number" ||
-     this.pageNo < 1 ||
-     this.pageNo > this.totalPages
-   ) {
-     this.pageNo = 1;
-   }
+    private isOutOfRange(val: string): boolean {
+      return Number(val) > this.totalPages;
+    }
 
-   this.setValue(this.pageNo);
- }
-}
+    private onTotalPagesInput() {
+      if (typeof this.totalPages !== "number") {
+        this.totalPages = 1;
+      }
+    }
+
+    private onPageNoInput() {
+      if (
+        typeof this.pageNo !== "number" ||
+        this.pageNo < 1 ||
+        this.pageNo > this.totalPages
+      ) {
+        this.pageNo = 1;
+      }
+
+      this.setValue(this.pageNo);
+    }
+  }
