@@ -4,7 +4,7 @@
   <div class="flex flex-col flex-1 min-w-0 overflow-x-hidden">
     <div class="relative z-0 flex flex-1 overflow-hidden">
       <main
-        class="relative z-0 flex-1 h-full overflow-y-hidden  focus:outline-none xl:order-last"
+        class="relative z-0 flex-1 h-full overflow-y-hidden focus:outline-none xl:order-last"
       >
         <article>
           <!-- Profile header -->
@@ -19,8 +19,6 @@
                       movieDetails?.belongs_to_collection?.poster_path
                     : '/assets/images/broken-large.png'
                 }}"
-                appImgLoadingHelper
-                placeholderSrc="/assets/images/banner-ghost.png"
                 noData="/assets/images/broken-large.png"
               />
             </div>
@@ -28,19 +26,15 @@
               <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
                 <div class="flex">
                   <img
-                    class="object-cover object-center w-24 h-24 rounded-full  ring-4 ring-white sm:h-32 sm:w-32"
+                    class="object-cover object-center w-24 h-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
                     src="{{
-                      movieDetails?.backdrop_path
-                        ? tmdbBannerBaseUrl + '/' + movieDetails?.backdrop_path
-                        : '/assets/images/broken-small.png'
+                      tmdbBannerBaseUrl + '/' + movieDetails?.backdrop_path
                     }}"
-                    appImgLoadingHelper
-                    placeholderSrc="/assets/images/img-placeholder.png"
                     noData="/assets/images/broken-small.png"
                   />
                 </div>
                 <div
-                  class="mt-6  sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1"
+                  class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1"
                 >
                   <div class="flex-1 min-w-0 mt-6 sm:hidden 2xl:block">
                     <h1 class="text-2xl font-bold text-gray-900 truncate">
@@ -64,7 +58,7 @@
                 <nav class="flex -mb-px space-x-8" aria-label="Tabs">
                   <a
                     href="#"
-                    class="px-1 py-4 text-sm font-medium text-gray-900 border-b-2 border-pink-500  whitespace-nowrap"
+                    class="px-1 py-4 text-sm font-medium text-gray-900 border-b-2 border-pink-500 whitespace-nowrap"
                     aria-current="page"
                   >
                     Detail
@@ -151,7 +145,7 @@
             </h2>
             <div class="grid grid-cols-1 gap-4 mt-1 sm:grid-cols-2">
               <div
-                class="relative flex items-center px-6 py-5 space-x-3 bg-white border border-gray-300 rounded-lg shadow-sm  hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
+                class="relative flex items-center px-6 py-5 space-x-3 bg-white border border-gray-300 rounded-lg shadow-sm hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
                 *ngFor="let company of movieDetails?.production_companies"
               >
                 <div class="flex-shrink-0" *ngIf="company.logo_path">
@@ -162,7 +156,7 @@
                   />
                 </div>
                 <div
-                  class="flex items-center justify-center flex-shrink-0 w-10 h-10 "
+                  class="flex items-center justify-center flex-shrink-0 w-10 h-10"
                   *ngIf="!company.logo_path"
                 >
                   <p class="font-bold text-indigo-500 capitalize">
@@ -195,7 +189,7 @@
             <h2 class="text-sm font-medium text-gray-500">Cast</h2>
             <div class="flex flex-wrap w-full mt-2">
               <a
-                class="relative flex items-center mb-2 mr-2 bg-white border border-gray-300 rounded-full shadow-sm  hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
+                class="relative flex items-center mb-2 mr-2 bg-white border border-gray-300 rounded-full shadow-sm hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
                 *ngFor="let castMember of credits?.cast"
                 [routerLink]="['/', 'people', castMember.id]"
               >
@@ -209,7 +203,7 @@
                   />
                 </div>
                 <div
-                  class="flex items-center justify-center flex-shrink-0 w-10 h-10 "
+                  class="flex items-center justify-center flex-shrink-0 w-10 h-10"
                   *ngIf="!castMember.profile_path"
                 >
                   <p class="font-bold text-indigo-500 capitalize">
