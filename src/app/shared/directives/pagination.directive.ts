@@ -34,19 +34,24 @@ import {
     ngOnChanges({ pageNo, totalPages }: SimpleChanges) {
       // Needs to be checked before pageNo
       if (totalPages) {
+        console.log('on total pages pages change 🤢🤢')
         this.onTotalPagesInput();
       }
 
       if (pageNo) {
+        console.log('on pageNo change 🥵🥵', pageNo, '🥵🥵')
         this.onPageNoInput();
       }
     }
 
     @HostListener("input", ["$event.target.value"]) onInput(val: string) {
+      console.log('input 🟡 👉👉', val)
+
       this.setValue(this.getParsedValue(val));
     }
 
     @HostListener("change", ["$event.target.value"]) onChange(val: string) {
+      console.log('change triggered 🔴🔴🔴')
       if (val === "") {
         this.setValue(1);
       }
@@ -72,11 +77,13 @@ import {
     }
 
     public prev() {
-      this.setPage(Math.max(1, this.pageNo - 1));
+      // this.setPage(Math.max(1, this.pageNo - 1));
+      this.setPage(this.pageNo - 1);
     }
 
     public next() {
-      this.setPage(Math.min(this.totalPages, this.pageNo + 1));
+      // this.setPage(Math.min(this.totalPages, this.pageNo + 1));
+      this.setPage(this.pageNo + 1);
     }
 
     public last() {
@@ -108,11 +115,13 @@ import {
     }
 
     private onPageNoInput() {
+      this.pageNo = this.pageNo * 1;
       if (
         typeof this.pageNo !== "number" ||
         this.pageNo < 1 ||
         this.pageNo > this.totalPages
       ) {
+        console.log('error 🦴', this.pageNo > this.totalPages,  this.pageNo )
         this.pageNo = 1;
       }
 

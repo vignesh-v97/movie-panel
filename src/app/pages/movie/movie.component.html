@@ -13,50 +13,27 @@
         <h2 class="mb-12 text-4xl text-black">Movies</h2>
 
         <div
-          class="
-            grid grid-cols-1
-            gap-y-4
-            sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10
-            lg:grid-cols-5 lg:gap-x-8
-          "
+          class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-5 lg:gap-x-8"
         >
           <a
-            class="
-              relative
-              flex flex-col
-              overflow-hidden
-              bg-white
-              border border-gray-200
-              rounded-lg
-              group
-            "
+            class="relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg group"
             *ngFor="let trendingMovieItem of trendingMovies"
             [routerLink]="[trendingMovieItem.id]"
           >
             <div
-              class="
-                bg-gray-200
-                aspect-w-3 aspect-h-4
-                group-hover:opacity-75
-                sm:aspect-none
-              "
+              class="bg-gray-200 aspect-w-3 aspect-h-4 group-hover:opacity-75 sm:aspect-none"
             >
               <img
                 src="{{
                   tmdbPosterBaseUrl + '/' + trendingMovieItem.poster_path
                 }}"
                 alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
-                class="
-                  object-cover object-center
-                  w-full
-                  h-full
-                  sm:w-full sm:h-full
-                "
+                class="object-cover object-center w-full h-full sm:w-full sm:h-full"
                 appImgLoadingHelper
                 placeholderSrc="/assets/images/img-placeholder.png"
               />
             </div>
-            <div class="flex flex-col flex-1 p-2 space-y-2" *ngIf="loaded">
+            <div class="flex flex-col flex-1 p-2 space-y-2">
               <h3 class="text-sm font-medium text-gray-900">
                 <a href="#">
                   <span aria-hidden="true" class="absolute inset-0"></span>
@@ -72,49 +49,66 @@
 </div>
 
 <!-- pagination -->
-<div
-  class="mx-auto flex flex-col justify-center items-center py-4 my-4"
->
-  <div class="flex justify-center items-center">
+<div class="flex flex-col items-center justify-center py-4 mx-auto my-4">
+  <div class="flex items-center justify-center">
     <button
-      class="disabled:opacity-30  h-7 w-10 bg-gray-100 flex justify-center items-center rounded-none border border-gray-300 group hover:bg-white transition ease-in duration-200"
+      class="flex items-center justify-center w-10 transition duration-200 ease-in bg-gray-100 border border-gray-300 rounded-none disabled:opacity-30 h-7 group hover:bg-white"
       (click)="pagination.first()"
       [disabled]="pagination.isFirst"
     >
-      <img src="/assets/images/first-arrow.png" class="h-4 group-hover:opacity-50" alt="" />
+      <img
+        src="/assets/images/first-arrow.png"
+        class="h-4 group-hover:opacity-50"
+        alt=""
+      />
     </button>
     <button
-      class="disabled:opacity-30  h-7 w-10 bg-gray-100 flex justify-center items-center rounded-none border border-gray-300 group hover:bg-white transition ease-in duration-200"
+      class="flex items-center justify-center w-10 transition duration-200 ease-in bg-gray-100 border border-gray-300 rounded-none disabled:opacity-30 h-7 group hover:bg-white"
       (click)="pagination.prev()"
       [disabled]="pagination.isFirst"
     >
-      <img src="/assets/images/prev.png" class="h-4 group-hover:opacity-50" alt="" />
+      <img
+        src="/assets/images/prev.png"
+        class="h-4 group-hover:opacity-50"
+        alt=""
+      />
     </button>
 
-    <div class="mx-2 border border-gray-500 outline-none bg-white">
-        <input
-          appPagination
-          #pagination="appPagination"
-          [totalPages]="totalPages"
-          (pageChange)="onPageChange($event)"
-          class="h-6 w-10 text-gray-800 rounded-none text-center font-bold bg-transparent outline-none"
-        />
+    <div class="mx-2 bg-white border border-gray-500 outline-none">
+      <input
+        appPagination
+        #pagination="appPagination"
+        [totalPages]="totalPages"
+        (pageChange)="onPageChange($event)"
+        class="w-10 h-6 font-bold text-center text-gray-800 bg-transparent rounded-none outline-none"
+      />
     </div>
 
     <button
-    class="disabled:opacity-30 h-7 w-10 bg-gray-100 flex justify-center items-center rounded-none border  border-gray-300 group hover:bg-white transition ease-in duration-200"
-    (click)="pagination.next()" [disabled]="pagination.isLast">
-      <img src="/assets/images/next.png" class="h-4 group-hover:opacity-50" alt="" />
+      class="flex items-center justify-center w-10 transition duration-200 ease-in bg-gray-100 border border-gray-300 rounded-none disabled:opacity-30 h-7 group hover:bg-white"
+      (click)="pagination.next()"
+      [disabled]="pagination.isLast"
+    >
+      <img
+        src="/assets/images/next.png"
+        class="h-4 group-hover:opacity-50"
+        alt=""
+      />
     </button>
     <button
-    class="disabled:opacity-30 h-7 w-10 bg-gray-100 flex justify-center items-center rounded-none border  border-gray-300 group hover:bg-white transition ease-in duration-200"
-
-    (click)="pagination.last()" [disabled]="pagination.isLast">
-      <img src="/assets/images/last-arrow.png" class="h-4 group-hover:opacity-50" alt="" />
+      class="flex items-center justify-center w-10 transition duration-200 ease-in bg-gray-100 border border-gray-300 rounded-none disabled:opacity-30 h-7 group hover:bg-white"
+      (click)="pagination.last()"
+      [disabled]="pagination.isLast"
+    >
+      <img
+        src="/assets/images/last-arrow.png"
+        class="h-4 group-hover:opacity-50"
+        alt=""
+      />
     </button>
   </div>
-  <p class="flex justify-center items-baseline text-xs mt-2">
-      <span class="mr-1">{{ pagination.pageNo }}</span>
+  <p class="flex items-baseline justify-center mt-2 text-xs">
+    <span class="mr-1">{{ pagination.pageNo }}</span>
     <span> / {{ pagination.totalPages }}</span>
   </p>
 </div>
